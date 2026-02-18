@@ -1,5 +1,5 @@
-<!doctype xhtml>
- <html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+ <html lang="en">
   <head>
    <title>Integrated application</title>
   </head>
@@ -11,8 +11,8 @@
   <div id="count"></div>
   <iframe id="embedded"
           src="https://svalyavakilia.github.io:443/embedded/embedded.html">
-  <iframe>
-  <script>
+  </iframe>
+  <script type="text/javascript">
    const parameters = new URLSearchParams(document.location.search);
    
    const identifier = parameters.get("identifier");
@@ -29,10 +29,14 @@
    document.getElementById("count").innerText = "Liczba ze schowka: " + count;
    
    window.localStorage.setItem("count", count + 1);
-
-   document.getElementById("embedded").postMessage(
-    { "identifier": identifier }
-   );
+   
+   const embedded = document.getElementById("embedded");
+   
+   embedded.onload = () => {
+    embedded.contentWindow.postMessage(
+     { data: identifier }
+    );
+   };
   </script>
  </body>
 </html>
