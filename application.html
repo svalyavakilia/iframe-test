@@ -1,0 +1,36 @@
+<!doctype xhtml>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <title>Integrated application</title>
+  </head>
+ <body>
+  <div>
+   Witamy w Dynamics!
+  </div>
+  <div id="identifier"></div>
+<div id="count"></div>
+<iframe id="embedded"><iframe>
+<script>
+   const parameters = new URLSearchParams(document.location.search);
+   
+   const identifier = parameters.get("identifier");
+   
+   document.getElementById("identifier").innerText =
+    "Identyfikator interakcji: " + identifier;
+   
+   let count = 1;
+   
+   if (window.localStorage.getItem("count")) {
+    count = parseInt(window.localStorage.getItem("count"));
+   }
+   
+   document.getElementById("count").innerText = "Liczba ze schowka: " + count;
+   
+   window.localStorage.setItem("count", count + 1);
+
+   document.getElementById("embedded").postMessage(
+    { "identifier": identifier }
+   );
+  </script>
+ </body>
+</html>
