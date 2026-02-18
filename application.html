@@ -2,20 +2,12 @@
 <html lang="en">
  <head>
   <title>Integrated application</title>
-  <style type="text/css">
-   #greeting {
-    font-weight: bold;
-   }
-  </style>
  </head>
  <body>
-  <div id="greeting">
-   Witamy w Dynamics!
-  </div>
   <div id="identifier"></div>
   <div id="count"></div>
-  <iframe id="embedded"
-          src="https://svalyavakilia.github.io:443/embedded/embedded.html">
+  <iframe id="dynamics"
+          src="https://svalyavakilia.github.io:443/iframe-test/dynamics.html">
   </iframe>
   <script type="text/javascript">
    const parameters = new URLSearchParams(document.location.search);
@@ -23,7 +15,7 @@
    const identifier = parameters.get("identifier");
    
    document.getElementById("identifier").innerText =
-    "Identyfikator aktualnej interakcji: " + identifier;
+    "Identyfikator bieżącej interakcji: " + identifier;
    
    let count = 1;
    
@@ -36,10 +28,10 @@
    
    window.localStorage.setItem("count", count + 1);
    
-   const embedded = document.getElementById("embedded");
+   const dynamics = document.getElementById("dynamics");
    
-   embedded.onload = () => {
-    embedded.contentWindow.postMessage(
+   dynamics.onload = () => {
+    dynamics.contentWindow.postMessage(
      { data: identifier }
     );
    };
