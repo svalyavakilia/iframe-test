@@ -1,10 +1,15 @@
 <!doctype html>
- <html lang="en">
-  <head>
-   <title>Integrated application</title>
-  </head>
+<html lang="en">
+ <head>
+  <title>Integrated application</title>
+  <style type="text/css">
+   #greeting {
+    font-weight: bold;
+   }
+  </style>
+ </head>
  <body>
-  <div>
+  <div id="greeting">
    Witamy w Dynamics!
   </div>
   <div id="identifier"></div>
@@ -18,7 +23,7 @@
    const identifier = parameters.get("identifier");
    
    document.getElementById("identifier").innerText =
-    "Identyfikator interakcji: " + identifier;
+    "Identyfikator aktualnej interakcji: " + identifier;
    
    let count = 1;
    
@@ -26,7 +31,8 @@
     count = parseInt(window.localStorage.getItem("count"));
    }
    
-   document.getElementById("count").innerText = "Liczba ze schowka: " + count;
+   document.getElementById("count").innerText =
+    "Liczba, pobrana z local storage: " + count;
    
    window.localStorage.setItem("count", count + 1);
    
