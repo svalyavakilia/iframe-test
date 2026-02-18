@@ -1,0 +1,24 @@
+<!doctype xhtml>
+ <html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+   <title>Embedded</title>
+   <style>
+    body {
+     background-color: lightblue;
+    }
+   </style>
+  </head>
+  
+  <body>
+  <div>
+   To jest iframe.
+  <div>
+  <div id="data"></div>
+  <script>
+   window.addEventListener("message", (event) => {
+    document.getElementById("data").innerText =
+     "Dane, otrzymane od postMessage: " + event.data.identifier;
+   });
+  </script>
+ </body>
+</html>
