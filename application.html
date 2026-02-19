@@ -16,8 +16,8 @@
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
    
-   if (!window.dynamics) {
-    window.dynamics = window.open(
+   //if (!window.dynamics) {
+    window.open(
      "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
      "",
      "popup"
@@ -25,7 +25,7 @@
     
     console.log(window);
     console.log(window.dynamics);
-   }
+   //}
    
 //   let dynamics = document.getElementById("dynamics");
 //   
