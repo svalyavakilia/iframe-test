@@ -19,7 +19,7 @@ console.log("Test1.");    const dynamics = window.open(
      "",
      ""
     );console.log("test");
-    dynamics.frames[0].onload = function() {console.log("Hello!");dynamics.postMessage( { data: "Hello!" } );};
+    dynamics.postMessage( { data: "Hello!" } );
 //dynamics.postMessage( { data: "Hello!" } )
 //    window.localStorage.setItem("dynamics", "true");
    //} else {
