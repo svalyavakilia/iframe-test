@@ -5,22 +5,23 @@
  </head>
  <body>
   <div id="identifier"></div>
-  <script type="text/javascript">
+  <script type="text/javascript" onload>
    const parameters = new URLSearchParams(document.location.search);
    
    const identifier = parameters.get("identifier");
    
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
-   
+   console.log("Whatttt");
    //if (!window.localStorage.getItem("dynamics")) {
-    const dynamics = window.open(
+console.log("Test1.");    const dynamics = window.open(
      "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
      "",
-     "popup"
-    );
-    dynamics.postMessage( { data: "Hello!" }, "*" );
-    window.localStorage.setItem("dynamics", "true");
+     ""
+    );console.log("test");
+    dynamics.frames[0].onload = function() {console.log("Hello!");dynamics.postMessage( { data: "Hello!" } );};
+//dynamics.postMessage( { data: "Hello!" } )
+//    window.localStorage.setItem("dynamics", "true");
    //} else {
     //const dynamics = window.open('', "dynamics", "popup");
     
