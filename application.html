@@ -5,10 +5,9 @@
  </head>
  <body>
   <div id="identifier"></div>
-  <div id="count"></div>
-  <iframe id="dynamics"
+  <div id="dynamics"
           src="https://svalyavakilia.github.io:443/iframe-test/dynamics.html">
-  </iframe>
+  </div>
   <script type="text/javascript">
    const parameters = new URLSearchParams(document.location.search);
    
@@ -17,24 +16,26 @@
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
    
-   let count = 1;
-   
-   if (window.localStorage.getItem("count")) {
-    count = parseInt(window.localStorage.getItem("count"));
+   if (window.parent) {
+    if (!window.parent.dynamics) {
+     window.parent.dynamics = window.open(
+      "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
+      "",
+      "popup"
+     );
+     
+     console.log(window.parent);
+     console.log(window.parent.dynamics);
+    }
    }
    
-   document.getElementById("count").innerText =
-    "Liczba, pobrana z local storage: " + count;
-   
-   window.localStorage.setItem("count", count + 1);
-   
-   const dynamics = document.getElementById("dynamics");
-   
-   dynamics.onload = () => {
-    dynamics.contentWindow.postMessage(
-     { data: identifier }
-    );
-   };
+//   let dynamics = document.getElementById("dynamics");
+//   
+//   dynamics.onload = () => {
+//    dynamics.contentWindow.postMessage(
+//     { data: identifier }
+//    );
+//   };
   </script>
  </body>
 </html>
