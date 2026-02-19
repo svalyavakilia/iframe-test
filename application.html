@@ -16,17 +16,15 @@
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
    
-   if (window.parent) {
-    if (!window.parent.dynamics) {
-     window.parent.dynamics = window.open(
-      "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
-      "",
-      "popup"
-     );
-     
-     console.log(window.parent);
-     console.log(window.parent.dynamics);
-    }
+   if (!window.dynamics) {
+    window.dynamics = window.open(
+     "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
+     "",
+     "popup"
+    );
+    
+    console.log(window);
+    console.log(window.dynamics);
    }
    
 //   let dynamics = document.getElementById("dynamics");
