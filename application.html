@@ -5,9 +5,6 @@
  </head>
  <body>
   <div id="identifier"></div>
-  <div id="dynamics"
-          src="https://svalyavakilia.github.io:443/iframe-test/dynamics.html">
-  </div>
   <script type="text/javascript">
    const parameters = new URLSearchParams(document.location.search);
    
@@ -16,24 +13,21 @@
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
    
-   //if (!window.dynamics) {
-    window.open(
+   //if (!window.localStorage.getItem("dynamics")) {
+    const dynamics = window.open(
      "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
      "",
      "popup"
     );
+    dynamics.postMessage( { data: "Hello!" }, "*" );
+    window.localStorage.setItem("dynamics", "true");
+   //} else {
+    //const dynamics = window.open('', "dynamics", "popup");
     
-    console.log(window);
-    console.log(window.dynamics);
+    //dynamics.postMessage(
+     //{ data: "Hello!" }
+    //);
    //}
-   
-//   let dynamics = document.getElementById("dynamics");
-//   
-//   dynamics.onload = () => {
-//    dynamics.contentWindow.postMessage(
-//     { data: identifier }
-//    );
-//   };
   </script>
  </body>
 </html>
