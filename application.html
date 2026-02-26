@@ -8,26 +8,32 @@
   
   <input id="message" type="text" />
   
-  <button onclick="sendMessage()">Send message!</button>
+  <button onclick="sendMessage(dynamics)">Send message!</button>
   
   <script type="text/javascript">
-   window.addEventListener("load", (event) => {
-    console.log("Application has been loaded.");
-   });
-   window.addEventListener("unload", (event) => {
-    console.log("Application has been unloaded.");
-   });
-   
+   const logPrefix = "[Dynamics integration]: ";
    const link = "https://svalyavakilia.github.io:443/iframe-test/dynamics.html";
    
-   console.log("Before opening a new tab.")
-   const popup = window.open(link, "_blank");
-   console.log("After opening a new tab.");
+   function log(text) {
+    console.log(logPrefix + text);
+   }
    
-   function sendMessage() {
+   let dynamics = null;
+   
+   window.addEventListener("load", (event) => {
+    log("application is loaded.");
+    
+    log("before opening a new tab.");
+    dynamics = window.open(link, "_blank");
+    log("after opening a new tab.");
+   });
+   
+   function sendMessage(window) {
     const message = document.getElementById("message").value;
     
-    popup.postMessage({ "data": message }, "*");
+    log("posting message '" + message + ".");
+    window.postMessage({ "data": message }, "*");
+    log("message was posted.");
    }
    
    const parameters = new URLSearchParams(document.location.search);
