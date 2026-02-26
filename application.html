@@ -5,31 +5,35 @@
  </head>
  <body>
   <div id="identifier"></div>
-  <script type="text/javascript" onload>
+  
+  <input id="message" type="text" />
+  
+  <button onclick="sendMessage()">Send message!</button>
+  
+  <script type="text/javascript">
+   window.addEventListener("load", (event) => {
+    console.log("Application has been loaded.");
+   });
+   window.addEventListener("unload", (event) => {
+    console.log("Application has been unloaded.");
+   });
+   
+   const link = "https://svalyavakilia.github.io:443/iframe-test/dynamics.html";
+   
+   const popup = window.open(link, "_blank");
+   
+   function sendMessage() {
+    const message = document.getElementById("message").value;
+    
+    popup.postMessage({ "data": message }, "*");
+   }
+   
    const parameters = new URLSearchParams(document.location.search);
    
    const identifier = parameters.get("identifier");
    
    document.getElementById("identifier").innerText =
     "Identyfikator bieżącej interakcji: " + identifier;
-   console.log("Whatttt");
-   //if (!window.localStorage.getItem("dynamics")) {
-console.log("Test1.");    const dynamics = window.open(
-     "https://svalyavakilia.github.io:443/iframe-test/dynamics.html",
-     "",
-     ""
-    );console.log("test");
-    dynamics.postMessage( { data: "Hello!" } );
-    console.log("after")
-//dynamics.postMessage( { data: "Hello!" } )
-//    window.localStorage.setItem("dynamics", "true");
-   //} else {
-    //const dynamics = window.open('', "dynamics", "popup");
-    
-    //dynamics.postMessage(
-     //{ data: "Hello!" }
-    //);
-   //}
   </script>
  </body>
 </html>
